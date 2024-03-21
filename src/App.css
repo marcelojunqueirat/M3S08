@@ -1,0 +1,33 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.sign {
+  justify-content: center;
+  display: grid;
+}
+
+.content {
+  grid-area: content;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'sidebar header header'
+    'sidebar content content'
+    'sidebar content content';
+  grid-template-columns: 240px 1fr 1fr;
+  grid-template-rows: 70px 1fr 1fr;
+  height: 100vh;
+}
+
+.content {  
+  grid-area: content;  
+}
+
+.button-logout {
+  margin: 10px;
+}
