@@ -21,8 +21,8 @@ describe('HomePage', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Tarefa 1 - Pendente')).toBeInTheDocument(),
-      expect(screen.getByText('Tarefa 2 - Andamento')).toBeInTheDocument(),
-      expect(screen.getByText('Tarefa 3 - Concluído')).toBeInTheDocument()
+        expect(screen.getByText('Tarefa 2 - Andamento')).toBeInTheDocument(),
+        expect(screen.getByText('Tarefa 3 - Concluído')).toBeInTheDocument()
     });
 
     const lista = screen.getAllByRole('listitem');

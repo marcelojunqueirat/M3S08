@@ -7,7 +7,7 @@ function HomePage() {
   const fetchTasks = async () => {
     try {
       const data = await fetch('api.com/tasks')
-      .then(response => response.json())
+        .then(response => response.json())
 
       setTasks(data);
     } catch (error) {
