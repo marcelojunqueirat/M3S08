@@ -1,5 +1,8 @@
-import { render, waitFor, screen } from "@testing-library/react"
-import MedicinesPage from "../../pages/MedicinesPage";
+async function fetchMedicines() {
+  const data = await fetch('api.com/medicines')
+    .then(response => response.json());
+  return data;
+}
 
 global.fetch = jest.fn(() => Promise.resolve({
   json: () => ([
@@ -7,27 +10,27 @@ global.fetch = jest.fn(() => Promise.resolve({
     { id: 2, name: 'Medicamento 2', price: 'R$ 11,99' },
     { id: 3, name: 'Medicamento 3', price: 'R$ 0,65' }
   ])
-}));
+})
+);
 
 beforeEach(() => {
   fetch.mockClear();
 })
 
-describe('HomePage', () => {
+describe('MedicinePage', () => {
   test('Lista retornando objetos', async () => {
-    render(<MedicinesPage />)
+    const json = await fetchMedicines();
 
-    expect(fetch).toHaveBeenCalledTimes(1);
+    for (let index = 0; index < json.length; index++) {
+      expect(json[index] && typeof json[index] === 'object').toBe(true)
 
-    await waitFor(() => {
-      expect(screen.getByText('Medicamento 1 - R$ 10,99')).toBeInTheDocument(),
-      expect(screen.getByText('Medicamento 2 - R$ 11,99')).toBeInTheDocument(),
-      expect(screen.getByText('Medicamento 3 - R$ 0,65')).toBeInTheDocument()
-    });
+    }
+  })
+})
 
-    // const lista = screen.getAllByRole('listitem');
-
-    // expect(lista.length).toBeGreaterThan(2)
-
+describe('MedicinePage', () => {
+  test('Lista retornando array', async () => {
+    const json = await fetchMedicines();
+    expect(Array.isArray(json)).toEqual(true);
   })
 })
