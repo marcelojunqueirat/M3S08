@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CardNoticia from "../components/CardNoticia";
 
 function HomePage() {
 
@@ -27,6 +28,7 @@ function HomePage() {
           <li key={task.id}>{task.title} - {task.status}</li>
         ))}
       </ul>
+      <CardNoticia title="Champions League 01/06" />
     </>
   )
 }
